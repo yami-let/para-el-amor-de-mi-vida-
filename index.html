@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Para ti ❤️</title>
 
@@ -12,29 +16,34 @@
 
 <body>
 
+    <!-- =====================================
+         PRIMERA ESCENA
+    ====================================== -->
+
     <main class="principal">
 
-        <!-- Fondo -->
         <div class="nebulosa"></div>
+
         <div class="estrellas"></div>
 
-        <!-- Contenido principal -->
         <div class="tarjeta">
 
-            <!-- Foto de tu novia -->
             <div class="marco-foto">
+
                 <img
                     src="imagenes/36cec233-1cf3-4840-b65d-f9f826ec3108.jpg"
                     alt="Mi amor"
                 >
+
             </div>
 
-            <!-- Texto -->
             <p class="toque">
-         Para mi niña… toca la foto y a Hello Kitty para continuar ❤️
+
+                Para mi niña… toca la foto
+                y a Hello Kitty para continuar ❤️
+
             </p>
 
-            <!-- Hello Kitty -->
             <button id="entrar">
 
                 <img
@@ -47,6 +56,57 @@
         </div>
 
     </main>
+
+
+    <!-- =====================================
+         SEGUNDA ESCENA
+    ====================================== -->
+
+    <section
+        id="llegamos"
+        class="segunda-escena"
+    >
+
+        <div class="nebulosa-final"></div>
+
+        <canvas id="corazonGalaxia"></canvas>
+
+        <canvas id="particulas"></canvas>
+
+        <div id="explosion"></div>
+
+        <div class="mensaje-llegada">
+
+            <h1>
+                Por fin llegamos... ❤️
+            </h1>
+
+            <p>
+                A nuestro pequeño universo ✨
+            </p>
+
+            <p class="frase">
+
+                Un lugar hecho solamente
+                para ti, mi niña 💜
+
+            </p>
+
+            <!-- CORAZÓN -->
+
+            <button
+                id="continuar"
+                aria-label="Continuar"
+            >
+
+                ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
 
     <script src="script.js"></script>
 

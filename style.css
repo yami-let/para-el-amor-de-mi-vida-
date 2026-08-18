@@ -12,9 +12,9 @@ body {
 
 body {
     overflow: hidden;
+    font-family: Arial, sans-serif;
     background: #000;
     color: white;
-    font-family: Arial, sans-serif;
 }
 
 /* =========================================
@@ -25,148 +25,174 @@ body {
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
+    overflow: hidden;
+
     background:
         radial-gradient(
             ellipse at center,
-            #180020 0%,
-            #09000d 42%,
-            #020003 75%,
+            #26000c 0%,
+            #110006 40%,
+            #030001 75%,
             #000 100%
         );
 }
 
 /* =========================================
-   NEBULOSA
+   NEBULOSA ROJA
 ========================================= */
 
 .nebulosa {
     position: absolute;
-
-    width: 130vw;
-    height: 90vh;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
+    inset: -45%;
     z-index: 0;
+    pointer-events: none;
 
     background:
+
+        radial-gradient(
+            ellipse 30% 18% at 50% 50%,
+            rgba(255, 0, 70, .65),
+            rgba(180, 0, 40, .28) 40%,
+            transparent 75%
+        ),
+
+        radial-gradient(
+            ellipse 55% 32% at 20% 48%,
+            rgba(190, 0, 40, .45),
+            transparent 75%
+        ),
+
+        radial-gradient(
+            ellipse 55% 30% at 80% 52%,
+            rgba(255, 0, 80, .42),
+            transparent 75%
+        ),
+
+        radial-gradient(
+            ellipse 50% 25% at 50% 20%,
+            rgba(130, 0, 35, .35),
+            transparent 75%
+        ),
+
+        radial-gradient(
+            ellipse 55% 28% at 45% 82%,
+            rgba(255, 20, 70, .28),
+            transparent 75%
+        ),
+
         radial-gradient(
             ellipse at center,
-            rgba(255, 30, 190, .65) 0%,
-            rgba(190, 0, 255, .42) 18%,
-            rgba(100, 0, 190, .25) 38%,
-            rgba(40, 0, 80, .12) 55%,
-            transparent 75%
+            #35000e 0%,
+            #160006 40%,
+            #050001 70%,
+            #000 100%
         );
 
     filter: blur(45px);
 
     animation:
-        respirarNebulosa 10s ease-in-out infinite alternate;
+        nebulosaMovimiento
+        20s
+        ease-in-out
+        infinite alternate;
+
+    will-change: transform;
 }
 
-.nebulosa::before {
-    content: "";
+@keyframes nebulosaMovimiento {
 
-    position: absolute;
-    inset: 0;
-
-    border-radius: 50%;
-
-    background:
-        conic-gradient(
-            from 0deg,
-            transparent,
-            rgba(255, 20, 180, .28),
-            transparent 25%,
-            rgba(120, 20, 255, .3),
-            transparent 50%,
-            rgba(255, 30, 190, .25),
-            transparent 75%,
-            rgba(120, 0, 255, .25),
-            transparent
-        );
-
-    filter: blur(55px);
-
-    animation:
-        girarNebulosa 35s linear infinite;
-}
-
-.nebulosa::after {
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 300px;
-    height: 300px;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 190, 250, .75),
-            rgba(255, 40, 200, .35) 25%,
-            rgba(130, 0, 255, .18) 50%,
-            transparent 72%
-        );
-
-    filter: blur(28px);
-}
-
-@keyframes respirarNebulosa {
-
-    from {
+    0% {
         transform:
-            translate(-50%, -50%)
-            scale(1);
+            scale(1.08)
+            translate3d(-2%, -1%, 0);
     }
 
-    to {
+    50% {
         transform:
-            translate(-50%, -50%)
-            scale(1.08);
-    }
-}
-
-@keyframes girarNebulosa {
-
-    from {
-        transform: rotate(0deg);
+            scale(1.14)
+            translate3d(1%, 2%, 0);
     }
 
-    to {
-        transform: rotate(360deg);
+    100% {
+        transform:
+            scale(1.10)
+            translate3d(2%, -1%, 0);
     }
 }
 
 /* =========================================
-   ESTRELLAS Y CORAZONES 3D
+   POLVO DE GALAXIA
+========================================= */
+
+.principal::before {
+    content: "";
+
+    position: absolute;
+    inset: -20%;
+
+    z-index: 1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse 45% 18% at 25% 45%,
+            rgba(255, 0, 70, .18),
+            transparent 70%
+        ),
+
+        radial-gradient(
+            ellipse 45% 18% at 75% 55%,
+            rgba(200, 0, 50, .18),
+            transparent 70%
+        );
+
+    filter: blur(35px);
+
+    animation:
+        polvoMovimiento
+        25s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes polvoMovimiento {
+
+    from {
+        transform: translate3d(-2%, 1%, 0);
+    }
+
+    to {
+        transform: translate3d(2%, -1%, 0);
+    }
+}
+
+/* =========================================
+   ESTRELLAS
 ========================================= */
 
 .estrellas {
     position: absolute;
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+.estrellas canvas {
+    position: absolute;
 
     inset: 0;
 
-    z-index: 2;
+    width: 100%;
+    height: 100%;
 
-    pointer-events: none;
+    display: block;
 }
 
 /* =========================================
@@ -178,119 +204,81 @@ body {
 
     z-index: 10;
 
-    width: min(82vw, 370px);
+    width: min(90%, 500px);
 
-    min-height: 500px;
+    min-height: 540px;
 
-    padding: 25px 20px;
+    padding: 40px 28px;
 
     display: flex;
-
     flex-direction: column;
 
     justify-content: center;
-
     align-items: center;
 
     text-align: center;
 
     border-radius: 32px;
 
+    border:
+        1px solid
+        rgba(255, 100, 120, .22);
+
     background:
         linear-gradient(
-            135deg,
-            rgba(255,255,255,.13),
-            rgba(255,255,255,.035) 45%,
-            rgba(255,80,220,.07)
+            145deg,
+            rgba(70, 0, 15, .40),
+            rgba(15, 0, 5, .24)
         );
 
-    backdrop-filter:
-        blur(18px)
-        saturate(145%);
-
-    -webkit-backdrop-filter:
-        blur(18px)
-        saturate(145%);
-
-    border:
-        1px solid rgba(255,255,255,.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     box-shadow:
 
-        0 8px 35px rgba(0,0,0,.35),
+        0 0 30px
+        rgba(255, 0, 60, .18),
 
-        0 0 35px rgba(255,30,210,.18),
+        0 0 90px
+        rgba(255, 0, 40, .10),
 
-        0 0 80px rgba(140,30,255,.16),
+        inset 0 0 50px
+        rgba(255, 50, 80, .05);
 
-        inset 0 1px 1px rgba(255,255,255,.35),
+    transform-style: preserve-3d;
 
-        inset 0 -1px 2px rgba(255,70,220,.12);
-
-    overflow: hidden;
+    will-change: transform;
 
     animation:
-        aparecer 1.2s ease;
+        aparecer
+        1.2s
+        ease;
 }
 
-/* =========================================
-   REFLEJO
-========================================= */
+/* Brillo del cristal */
 
 .tarjeta::before {
     content: "";
 
     position: absolute;
 
-    top: -45%;
-    left: -25%;
+    inset: -1px;
 
-    width: 150%;
-    height: 70%;
-
-    transform: rotate(-8deg);
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.20),
-            rgba(255,255,255,.04),
-            transparent
-        );
-
-    filter: blur(8px);
-
-    pointer-events: none;
-}
-
-/* =========================================
-   BRILLO DEL BORDE
-========================================= */
-
-.tarjeta::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 1px;
-
-    border-radius: 31px;
+    border-radius: 32px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(255,130,240,.25),
+            rgba(255, 80, 100, .30),
             transparent 30%,
-            transparent 65%,
-            rgba(170,100,255,.20)
+            transparent 70%,
+            rgba(255, 0, 50, .22)
         );
 
     pointer-events: none;
-}
 
-/* =========================================
-   APARICIÓN
-========================================= */
+    z-index: -1;
+}
 
 @keyframes aparecer {
 
@@ -298,7 +286,7 @@ body {
         opacity: 0;
 
         transform:
-            translateY(30px)
+            translateY(35px)
             scale(.92);
     }
 
@@ -316,42 +304,56 @@ body {
 ========================================= */
 
 .marco-foto {
+    width: 210px;
+    height: 260px;
 
-    position: relative;
+    padding: 5px;
 
-    z-index: 2;
-
-    width: 200px;
-    height: 245px;
-
-    padding: 4px;
-
-    border-radius: 23px;
+    border-radius: 22px;
 
     background:
         linear-gradient(
             135deg,
-            #ff55d7,
-            #9c35ff,
-            #ff3fc8
+            #ff174f,
+            #ff003c,
+            #a80029,
+            #ff315d
         );
 
     box-shadow:
 
-        0 0 18px rgba(255,50,210,.8),
+        0 0 20px
+        rgba(255, 0, 60, .75),
 
-        0 0 45px rgba(180,40,255,.45),
-
-        0 0 80px rgba(255,0,180,.22);
+        0 0 55px
+        rgba(255, 0, 40, .40);
 
     overflow: hidden;
 
-    animation:
-        fotoFlotar 5s ease-in-out infinite;
+    cursor: pointer;
+
+    transform: translateZ(30px);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.marco-foto:hover {
+    transform:
+        translateZ(45px)
+        scale(1.03);
+
+    box-shadow:
+
+        0 0 25px
+        rgba(255, 30, 70, .95),
+
+        0 0 70px
+        rgba(255, 0, 50, .60);
 }
 
 .marco-foto img {
-
     width: 100%;
     height: 100%;
 
@@ -359,19 +361,7 @@ body {
 
     object-fit: cover;
 
-    border-radius: 19px;
-}
-
-@keyframes fotoFlotar {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-6px);
-    }
+    border-radius: 18px;
 }
 
 /* =========================================
@@ -379,36 +369,35 @@ body {
 ========================================= */
 
 .toque {
+    margin-top: 25px;
+    margin-bottom: 18px;
 
-    position: relative;
-
-    z-index: 2;
-
-    margin-top: 20px;
-    margin-bottom: 13px;
+    max-width: 400px;
 
     font-size: 19px;
+
+    line-height: 1.4;
 
     font-weight: bold;
 
     color: white;
 
     text-shadow:
-
-        0 0 8px #ff63db,
-
-        0 0 20px #c23cff,
-
-        0 0 35px #ff2ccf;
+        0 0 8px #ff3155,
+        0 0 20px #ff003c,
+        0 0 35px #a80029;
 
     animation:
-        brilloTexto 2s ease-in-out infinite alternate;
+        textoBrillo
+        2s
+        ease-in-out
+        infinite alternate;
 }
 
-@keyframes brilloTexto {
+@keyframes textoBrillo {
 
     from {
-        opacity: .7;
+        opacity: .75;
     }
 
     to {
@@ -421,47 +410,41 @@ body {
 ========================================= */
 
 #entrar {
-
-    position: relative;
-
-    z-index: 3;
-
-    width: 68px;
-    height: 68px;
+    width: 76px;
+    height: 76px;
 
     padding: 5px;
 
     display: flex;
-
     justify-content: center;
     align-items: center;
 
     border:
-        1px solid rgba(255,255,255,.3);
+        2px solid
+        rgba(255, 100, 120, .35);
 
     border-radius: 50%;
 
     background:
-        rgba(255,255,255,.10);
+        rgba(255, 255, 255, .07);
 
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     cursor: pointer;
 
     box-shadow:
 
-        0 0 15px rgba(255,60,220,.8),
+        0 0 15px
+        rgba(255, 0, 60, .8),
 
-        0 0 35px rgba(150,50,255,.55),
+        0 0 35px
+        rgba(255, 0, 40, .5),
 
-        inset 0 1px 3px rgba(255,255,255,.35);
+        0 0 70px
+        rgba(255, 0, 60, .20);
 
-    animation:
-        kittyFlotar 3s ease-in-out infinite;
+    transform: translateZ(40px);
 
     transition:
         transform .25s ease,
@@ -469,7 +452,6 @@ body {
 }
 
 #entrar img {
-
     width: 100%;
     height: 100%;
 
@@ -479,78 +461,24 @@ body {
 }
 
 #entrar:hover {
-
-    transform: scale(1.12);
+    transform:
+        translateZ(55px)
+        scale(1.12);
 
     box-shadow:
 
-        0 0 25px #ff5bd6,
-
-        0 0 55px #963cff,
-
-        0 0 90px rgba(255,50,210,.5);
+        0 0 25px #ff3155,
+        0 0 55px #ff003c,
+        0 0 90px rgba(255, 0, 60, .65);
 }
 
 #entrar:active {
-
-    transform: scale(.9);
-}
-
-@keyframes kittyFlotar {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-6px);
-    }
+    transform:
+        translateZ(20px)
+        scale(.9);
 }
 
 /* =========================================
-   CELULAR
-========================================= */
-
-@media (max-width: 600px) {
-
-    .tarjeta {
-
-        width: 86vw;
-
-        min-height: 470px;
-
-        padding: 22px 16px;
-
-        border-radius: 29px;
-    }
-
-    .marco-foto {
-
-        width: 180px;
-        height: 225px;
-
-        border-radius: 21px;
-    }
-
-    .marco-foto img {
-
-        border-radius: 17px;
-    }
-
-    .toque {
-
-        font-size: 18px;
-
-        margin-top: 18px;
-    }
-
-    #entrar {
-
-        width: 64px;
-        height: 64px;
-    }
-}/* =========================================
    MENSAJE DE AMOR
 ========================================= */
 
@@ -558,8 +486,7 @@ body {
     position: absolute;
 
     left: 50%;
-
-    bottom: 25px;
+    bottom: 22px;
 
     transform:
         translateX(-50%)
@@ -572,26 +499,24 @@ body {
     border-radius: 18px;
 
     background:
-        rgba(255, 60, 210, .12);
+        rgba(255, 0, 60, .10);
 
     border:
-        1px solid rgba(255,150,240,.25);
+        1px solid
+        rgba(255, 100, 120, .25);
 
-    backdrop-filter:
-        blur(12px);
-
-    -webkit-backdrop-filter:
-        blur(12px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     color: white;
 
-    font-size: 18px;
+    font-size: 17px;
 
     font-weight: bold;
 
     text-shadow:
-        0 0 8px #ff5bd6,
-        0 0 18px #b83cff;
+        0 0 8px #ff3155,
+        0 0 18px #ff003c;
 
     opacity: 0;
 
@@ -603,10 +528,353 @@ body {
 }
 
 .mensaje-amor.mostrar {
-
     opacity: 1;
 
     transform:
         translateX(-50%)
         translateY(0);
+}
+
+/* =========================================
+   SEGUNDA ESCENA
+========================================= */
+
+.segunda-escena {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #3b000c 0%,
+            #180004 35%,
+            #050001 70%,
+            #000 100%
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: scale(1.5);
+
+    transition:
+        opacity 1.5s ease,
+        transform 2s ease,
+        visibility 1.5s;
+}
+
+.segunda-escena.activa {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+/* =========================================
+   GALAXIA CORAZÓN
+========================================= */
+
+#corazonGalaxia {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+
+/* =========================================
+   MENSAJE
+========================================= */
+
+.mensaje-llegada {
+    position: relative;
+
+    z-index: 10;
+
+    text-align: center;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        scale(.9);
+
+    transition:
+        opacity 2s ease 1s,
+        transform 2s ease 1s;
+}
+
+.segunda-escena.activa
+.mensaje-llegada {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.mensaje-llegada h1 {
+    font-size:
+        clamp(
+            30px,
+            6vw,
+            65px
+        );
+
+    color: white;
+
+    text-shadow:
+        0 0 10px #ff3155,
+        0 0 25px #ff003c,
+        0 0 60px #a80029;
+}
+
+.mensaje-llegada p {
+    margin-top: 15px;
+
+    font-size:
+        clamp(
+            18px,
+            3vw,
+            28px
+        );
+
+    color: #ffd9df;
+
+    text-shadow:
+        0 0 10px #ff3155,
+        0 0 25px #ff003c;
+}
+
+/* =========================================
+   CORAZÓN CONTINUAR
+========================================= */
+
+#continuar {
+    width: 78px;
+    height: 78px;
+
+    margin-top: 28px;
+
+    border:
+        1px solid
+        rgba(255, 120, 140, .40);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 0, 60, .10);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    color: #ff3155;
+
+    font-size: 35px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    box-shadow:
+        0 0 15px rgba(255, 0, 60, .7),
+        0 0 35px rgba(255, 0, 40, .5),
+        inset 0 0 15px rgba(255, 100, 120, .15);
+
+    animation:
+        corazonLatido
+        2s
+        ease-in-out
+        infinite;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+@keyframes corazonLatido {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.10);
+    }
+}
+
+#continuar:hover {
+    transform: scale(1.18);
+
+    box-shadow:
+        0 0 25px rgba(255, 0, 60, .95),
+        0 0 60px rgba(255, 0, 40, .75),
+        0 0 100px rgba(255, 0, 60, .35);
+}
+
+#continuar:active {
+    transform: scale(.82);
+}
+
+/* =========================================
+   PARTÍCULAS
+========================================= */
+
+#particulas {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 20;
+}
+
+/* =========================================
+   EXPLOSIÓN
+========================================= */
+
+#explosion {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 20px #fff,
+        0 0 50px #ff3155,
+        0 0 100px #ff003c;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.1);
+
+    pointer-events: none;
+
+    z-index: 25;
+}
+
+#explosion.explotar {
+    animation:
+        explosionCorazon
+        1.2s
+        ease-out
+        forwards;
+}
+
+@keyframes explosionCorazon {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.1);
+    }
+
+    60% {
+        opacity: .8;
+
+        transform:
+            translate(-50%, -50%)
+            scale(35);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(70);
+    }
+}
+
+/* =========================================
+   SALIDA
+========================================= */
+
+.segunda-escena.salir {
+    opacity: 0;
+
+    transform: scale(1.3);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+    .tarjeta {
+        width: 90%;
+        min-height: 500px;
+
+        padding: 28px 18px;
+
+        border-radius: 28px;
+    }
+
+    .marco-foto {
+        width: 185px;
+        height: 235px;
+    }
+
+    .toque {
+        font-size: 17px;
+        max-width: 320px;
+    }
+
+    #entrar {
+        width: 68px;
+        height: 68px;
+    }
+
+    .mensaje-amor {
+        font-size: 16px;
+        bottom: 18px;
+    }
+
+    #continuar {
+        width: 68px;
+        height: 68px;
+
+        font-size: 30px;
+    }
 }
